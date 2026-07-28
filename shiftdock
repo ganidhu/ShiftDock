@@ -1,0 +1,50 @@
+#!/bin/bash
+# ==============================================================================
+# ShiftDock CLI Master Tool
+# Control center for running, recording, and inspecting macros
+# ==============================================================================
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PLAY_SCRIPT="$SCRIPT_DIR/run_macro.sh"
+RECORD_SCRIPT="$SCRIPT_DIR/record_macro.sh"
+CROSSMACRO_BIN="/Applications/CrossMacro.app/Contents/MacOS/CrossMacro.UI"
+DEFAULT_MACRO="/Users/ganidhu/Documents/MacbookTo2ndaryDisp_Working1.macro"
+
+usage() {
+    echo "Usage: shiftdock <command> [options]"
+    echo ""
+    echo "Commands:"
+    echo "  run [macro_file] [options]    Run macro in the background (default macro if unspec)"
+    echo "  record [out_file] [options]  Record new macro via CLI (press Ctrl+C to stop)"
+    echo "  info [macro_file]            Validate and show macro information"
+    echo "  doctor                       Check system permissions & dependencies"
+    echo ""
+    echo "Examples:"
+    echo "  shiftdock run"
+    echo "  shiftdock run --speed 1.5"
+    echo "  shiftdock record ~/Documents/MyNewMacro.macro --duration 10"
+    echo "  shiftdock info"
+    exit 1
+}
+
+COMMAND="$1"
+shift 1 2>/dev/null
+
+case "$COMMAND" in
+    run|play)
+        "$PLAY_SCRIPT" "$@"
+        ;;
+    record|rec)
+        "$RECORD_SCRIPT" "$@"
+        ;;
+    info|validate)
+        TARGET="${1:-$DEFAULT_MACRO}"
+        "$CROSSMACRO_BIN" macro info "$TARGET"
+        ;;
+    doctor|check)
+        "$CROSSMACRO_BIN" doctor
+        ;;
+    *)
+        usage
+        ;;
+esac

@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+shiftdock.egg-info/PKG-INFO
+shiftdock.egg-info/SOURCES.txt
+shiftdock.egg-info/dependency_links.txt
+shiftdock.egg-info/entry_points.txt
+shiftdock.egg-info/top_level.txt
+shiftdock_cli/__init__.py
+shiftdock_cli/cli.py

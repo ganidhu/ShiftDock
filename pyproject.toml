@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shiftdock"
+version = "1.0.0"
+authors = [
+    { name = "ganidhu" }
+]
+description = "Zero-GUI background macro trigger & interactive CLI runner for macOS built on CrossMacro"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Environment :: Console",
+]
+
+[project.scripts]
+shiftdock = "shiftdock_cli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["shiftdock_cli*"]

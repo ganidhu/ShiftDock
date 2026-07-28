@@ -1,0 +1,2 @@
+[console_scripts]
+shiftdock = shiftdock_cli.cli:main
